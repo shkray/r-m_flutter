@@ -1,6 +1,6 @@
 # rick_and_morty_app
 
-A new Flutter project.
+test project on flutter using API
 
 ## Getting Started
 
