@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../images.dart';
+import '../../resources/images.dart';
 
 class AppBarGradientWidget extends StatelessWidget {
   const AppBarGradientWidget({super.key});

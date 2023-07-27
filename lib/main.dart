@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty_app/screens/welcomeScreen/welcome_screen.dart';
+import 'package:rick_and_morty_app/widgets/welcomeScreen/main_view.dart';
 
 void main() {
   runApp(const MyApp());
