@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty_app/domain/services/character_controller.dart';
-import '../characterView/character_widget.dart';
+import '../characterView/character_view.dart';
 import 'app_bar_widgets.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -34,18 +33,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
         ),
-        body: Container(color: const Color.fromRGBO(39, 43, 51, 1),
-          child: ListView(
-            children: List<Widget>.filled(15, const CharacterWidget()),
-          ),
-        )
+        body: CharacterListView()
       ),
     );
-  }
-
-  @override
-  void initState() {
-    CharacterController().allCharacters();
   }
 }
 
