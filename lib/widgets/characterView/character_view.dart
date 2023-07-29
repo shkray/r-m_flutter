@@ -7,7 +7,7 @@ class CharacterListView extends StatelessWidget {
   const CharacterListView({super.key});
 
   static Widget create() {
-    return ChangeNotifierProvider(
+    return ChangeNotifierProvider<ViewModel>(
       create: (_) => ViewModel(),
       child: const CharacterListView(),
     );
@@ -15,12 +15,23 @@ class CharacterListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(color: const Color.fromRGBO(39, 43, 51, 1),
-        child: ListView(
-        children: context.select((ViewModel vm) => vm.state.characters.map(
-                (character) => CharacterWidget(character: character)).toList()
-        ),
-      ),
+    return ChangeNotifierProvider(
+        create: (_) => ViewModel(),
+        builder: (context, child) {
+          if (context.read<ViewModel>().state.characters.isEmpty){
+            return const CircularProgressIndicator();
+          } else {
+            return Text(context.read<ViewModel>().state.characters[0].name);
+          }
+      }
     );
   }
 }
+
+// Container(color: const Color.fromRGBO(39, 43, 51, 1),
+// child: ListView(
+// children: context.select((ViewModel vm) => vm.state.characters.map(
+// (character) => CharacterWidget(character: character)).toList()
+// ),
+// ),
+// );

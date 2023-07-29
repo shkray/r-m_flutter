@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:rick_and_morty_app/domain/services/characters_service.dart';
+import '../characterView/character_model.dart';
 import '../characterView/character_view.dart';
 import 'app_bar_widgets.dart';
 

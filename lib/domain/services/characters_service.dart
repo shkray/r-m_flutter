@@ -11,6 +11,7 @@ class CharactersService{
     final url = Uri.parse('https://rickandmortyapi.com/api/character');
     final request = await client.getUrl(url);
     final response = await request.close();
+    //final printFoo = await response.transform(utf8.decoder).toList().then((value) => value.join()).then((v) => jsonDecode(v) as List<dynamic>);
     final json = await response
       .transform(utf8.decoder)
       .toList()
