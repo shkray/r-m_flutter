@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty_app/domain/services/characters_service.dart';
 import '../characterView/character_view.dart';
 import 'app_bar_widgets.dart';
 
@@ -33,7 +34,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
         ),
-        body: CharacterListView()
+        body: const CharacterListView()
       ),
     );
   }

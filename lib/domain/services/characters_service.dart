@@ -7,11 +7,11 @@ import '../entities/character.dart';
 class CharactersService{
   final client = HttpClient();
   
-  getAllCharacters() async{
+  Future<List<Character>> getAllCharacters() async{
     final url = Uri.parse('https://rickandmortyapi.com/api/character');
     final request = await client.getUrl(url);
-    final responce = await request.close();
-    final json = await responce
+    final response = await request.close();
+    final json = await response
       .transform(utf8.decoder)
       .toList()
       .then((value) => value.join())

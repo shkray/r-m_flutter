@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../domain/entities/character.dart';
+
 class CharacterWidget extends StatelessWidget {
-  const CharacterWidget({super.key});
+  final Character character;
+  const CharacterWidget({super.key, required this.character});
 
   @override
   Widget build(BuildContext context) {
@@ -14,19 +17,17 @@ class CharacterWidget extends StatelessWidget {
             border: Border.all(color: Colors.black26),
             borderRadius: const BorderRadius.all(Radius.circular(9.0))
         ),
-        child: const Row(
+        child: Row(
           children: [
-            Expanded( flex: 3, child: SizedBox(height:100, child: Placeholder())),
-            Expanded(flex: 4,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 8),
-                      child: Text("naming"),
-                    )
-                  ],
+            Image.network(character.image),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: Text(character.name),
                 )
+              ],
             )
           ],
         ),
