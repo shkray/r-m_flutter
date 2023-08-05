@@ -3,25 +3,32 @@ import 'package:provider/provider.dart';
 import 'character_widget.dart';
 import 'character_model.dart';
 
-class CharacterListView extends StatelessWidget {
+class CharacterListView extends StatefulWidget {
   const CharacterListView({super.key});
 
-  static Widget create() {
-    return ChangeNotifierProvider<ViewModel>(
-      create: (_) => ViewModel(),
-      child: const CharacterListView(),
-    );
-  }
+  @override
+  State<CharacterListView> createState() => _CharacterListViewState();
+}
+
+class _CharacterListViewState extends State<CharacterListView> {
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
         create: (_) => ViewModel(),
         builder: (context, child) {
-          if (context.read<ViewModel>().state.characters.isEmpty){
-            return const CircularProgressIndicator();
+          var status = context.watch<ViewModel>().status;
+          if (status) {
+            return ListView.builder(
+                controller: context.read<ViewModel>().scrollController,
+                itemCount: context.read<ViewModel>().itemCount, //context.read<ViewModel>().characters.info.count,
+                itemBuilder: (context, index){
+                  //print('index: $index, count: ${context.read<ViewModel>().itemCount}');
+                  return CharacterWidget(character: context.read<ViewModel>().characters.results[index]);
+                }
+            );
           } else {
-            return Text(context.read<ViewModel>().state.characters[0].name);
+            return const Center(child: CircularProgressIndicator());
           }
       }
     );

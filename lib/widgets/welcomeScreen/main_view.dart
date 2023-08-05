@@ -46,15 +46,15 @@ class BottomNavigationBarItems{
   static final items = <BottomNavigationBarItem>[
     const BottomNavigationBarItem(
         icon: Icon(Icons.person),
-        label: "Персонажи"
+        label: "Characters"
     ),
     const BottomNavigationBarItem(
         icon: Icon(Icons.location_on),
-        label: "Локации"
+        label: "Locations"
     ),
     const BottomNavigationBarItem(
         icon: Icon(Icons.live_tv_outlined),
-        label: "Эпизоды"
+        label: "Episodes"
     )
   ];
 }

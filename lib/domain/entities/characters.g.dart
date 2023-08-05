@@ -1,16 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'character.dart';
+part of 'characters.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Character _$CharacterFromJson(Map<String, dynamic> json) => Character(
-      count: json['count'] as int,
-      pages: json['pages'] as int,
-      next: json['next'] as String,
-      prev: json['prev'] as String,
+Result _$ResultFromJson(Map<String, dynamic> json) => Result(
       id: json['id'] as int,
       name: json['name'] as String,
       status: json['status'] as String,
@@ -26,11 +22,7 @@ Character _$CharacterFromJson(Map<String, dynamic> json) => Character(
       created: json['created'] as String,
     );
 
-Map<String, dynamic> _$CharacterToJson(Character instance) => <String, dynamic>{
-      'count': instance.count,
-      'pages': instance.pages,
-      'next': instance.next,
-      'prev': instance.prev,
+Map<String, dynamic> _$ResultToJson(Result instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'status': instance.status,
@@ -43,4 +35,17 @@ Map<String, dynamic> _$CharacterToJson(Character instance) => <String, dynamic>{
       'episode': instance.episode,
       'url': instance.url,
       'created': instance.created,
+    };
+
+Characters _$CharactersFromJson(Map<String, dynamic> json) => Characters(
+      info: Info.fromJson(json['info'] as Map<String, dynamic>),
+      results: (json['results'] as List<dynamic>)
+          .map((e) => Result.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$CharactersToJson(Characters instance) =>
+    <String, dynamic>{
+      'info': instance.info.toJson(),
+      'results': instance.results.map((e) => e.toJson()).toList(),
     };

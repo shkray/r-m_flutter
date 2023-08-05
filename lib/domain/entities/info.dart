@@ -7,8 +7,8 @@ class Info{
   Info({required this.count, required this.pages, required this.next, required this.prev});
   int count;
   int pages;
-  String next;
-  String prev;
+  dynamic next;
+  dynamic prev;
 
 
 

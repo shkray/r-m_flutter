@@ -1,11 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:rick_and_morty_app/domain/entities/info.dart';
 
-part 'character.g.dart';
+part 'characters.g.dart';
 
-@JsonSerializable()
-class Character extends Info{
-
+@JsonSerializable(explicitToJson: true)
+class Result{
   int id;
   String name;
   String status;
@@ -19,11 +18,7 @@ class Character extends Info{
   String url;
   String created;
 
-  Character({
-    required super.count,
-    required super.pages,
-    required super.next,
-    required super.prev,
+  Result({
     required this.id,
     required this.name,
     required this.status,
@@ -35,10 +30,25 @@ class Character extends Info{
     required this.image,
     required this.episode,
     required this.url,
-    required this.created,
+    required this.created
   });
 
-  factory Character.fromJson(Map<String, dynamic> json) => _$CharacterFromJson(json);
+  factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CharacterToJson(this);
+  Map<String, dynamic> toJson() => _$ResultToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Characters{
+  Info info;
+  List<Result> results;
+
+  Characters({
+    required this.info,
+    required this.results
+  });
+
+  factory Characters.fromJson(Map<String, dynamic> json) => _$CharactersFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CharactersToJson(this);
 }
