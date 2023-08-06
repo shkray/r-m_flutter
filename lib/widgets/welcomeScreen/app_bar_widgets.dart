@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rick_and_morty_app/widgets/characterView/search_provider.dart';
 import '../../resources/images.dart';
 
 class AppBarGradientWidget extends StatelessWidget {
@@ -47,44 +49,9 @@ class AppBarActionsWidget extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-        onPressed: () => showSearch(context: context, delegate: MySearchDelegate()),
-        icon: const Icon(Icons.search)
-    );
-  }
-}
-
-class MySearchDelegate extends SearchDelegate{
-  @override
-  List<Widget> buildActions(BuildContext context) {
-    return [
-      IconButton(
-        icon: const Icon(Icons.close),
-        onPressed: () => {
-          if (query.isEmpty) {close(context, null)}
-          else {query = ''}
-        },
-      )
-    ];
-  }
-
-  @override
-  Widget buildLeading(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.arrow_back),
-      onPressed: () => close(context, null),
-    );
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return const Center(
-      child: Text("Result"),
-    );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    return Container();
+        return IconButton(
+            onPressed: context.read<SearchProvider>().changeState,
+            icon: const Icon(Icons.search)
+        );
   }
 }

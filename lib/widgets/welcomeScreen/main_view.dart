@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rick_and_morty_app/domain/services/characters_service.dart';
+import 'package:rick_and_morty_app/widgets/characterView/search_provider.dart';
 import '../characterView/character_model.dart';
 import '../characterView/character_view.dart';
 import 'app_bar_widgets.dart';
@@ -24,19 +25,24 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          flexibleSpace: const AppBarGradientWidget(),
-          title: const AppBarTitleWidget(),
-          actions: const [AppBarActionsWidget()],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: const Color.fromRGBO(175, 216, 236, 1),
-          items: BottomNavigationBarItems.items,
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-        ),
-        body: const CharacterListView()
+      child: ChangeNotifierProvider<SearchProvider>(
+        create: (_) => SearchProvider(),
+        builder: (context, child) {
+          return Scaffold(
+            appBar: AppBar(
+              flexibleSpace: const AppBarGradientWidget(),
+              title: const AppBarTitleWidget(),
+              actions: const [AppBarActionsWidget()],
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+              backgroundColor: const Color.fromRGBO(175, 216, 236, 1),
+              items: BottomNavigationBarItems.items,
+              currentIndex: _selectedIndex,
+              onTap: _onItemTapped,
+            ),
+            body: const CharacterListView()
+          );
+        }
       ),
     );
   }

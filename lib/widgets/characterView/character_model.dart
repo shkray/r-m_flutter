@@ -8,10 +8,11 @@ class ViewModel extends ChangeNotifier{
   bool _isOnline = false;
   late int _itemCount;
   final _scrollController = ScrollController();
-  get scrollController => _scrollController;
-  get itemCount => _itemCount;
-  get status => _isOnline;
   late chr.Characters characters;
+
+  ScrollController get scrollController => _scrollController;
+  int get itemCount => _itemCount;
+  bool get status => _isOnline;
 
   void getAllCharacters() async{
     characters = await _characterService.getAllCharacters();
@@ -22,6 +23,7 @@ class ViewModel extends ChangeNotifier{
 
   void _nextPage() async{
     final tempCharacters = await _characterService.nextPage(characters);
+    //print('current: ${characters.results.length}, new: ${tempCharacters.results.length}');
     characters.results.addAll(tempCharacters.results);
     characters.info = tempCharacters.info;
     _itemCount = characters.results.length;
@@ -30,8 +32,8 @@ class ViewModel extends ChangeNotifier{
 
   void _scrollListener(){
     //print('current position: ${_scrollController.position.pixels}, max position: ${_scrollController.position.maxScrollExtent}');
-    if (_scrollController.position.pixels >=
-        _scrollController.position.maxScrollExtent-1000 &&
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent &&
         characters.info.next != null){
       _nextPage();
     }
